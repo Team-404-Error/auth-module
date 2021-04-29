@@ -11,9 +11,6 @@ const can = require('../auth/middleware/acl.js');
 routes.post('/signup', async (req, res, next) => {
   try {
     let user = new Users(req.body);
-    console.log('====================', user)
-    console.log('++++++++++++++++++++++', req.body)
-    console.log('----------------------', req)
     const userRecord = await user.save();
     // REMOVE AFTER TESTING
     const output = {
@@ -46,12 +43,18 @@ routes.get('/users', bearer, async (req, res, next) => {
   res.status(200).json(list);
 });
 
-// routes.put('/edit', async (req, res, next) => {
+routes.get('/secret', bearer, can('delete'), async (req, res, next) => {
+  res.status(200).send('Welcome to the secret space!')
+});
 
-// });
+routes.put('/edit', async (req, res, next) => {
 
-// routes.delete('/delete', async (req, res, next) => {
+});
 
-// });
+routes.delete('/delete', bearer, async (req, res, next) => {
+  console.log(req.user._id);
+  const deletedUser = await Users.findByIdAndDelete(req.user._id)
+  res.status(200).send(deletedUser)
+});
 
 module.exports = routes;

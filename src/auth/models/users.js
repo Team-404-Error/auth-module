@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-
 const users = new mongoose.Schema({
   username: { type: String, require: true, unique: true },
   password: { type: String, require: true},
