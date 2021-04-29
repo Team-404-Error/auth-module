@@ -2,7 +2,7 @@
 
 const users = require('../models/users');
 
-module.export = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     if(!req.headers.authorization) { next('invalid login')}
     const token = req.headers.authorization.split(' ').pop();

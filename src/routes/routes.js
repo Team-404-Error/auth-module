@@ -1,8 +1,8 @@
 'use strict';
 
 const express = require('express');
-
 const routes = express.Router();
+
 const Users = require('../auth/models/users');
 const basic = require('../auth/middleware/basic');
 const bearer = require('../auth/middleware/bearer');
@@ -38,7 +38,7 @@ routes.post('/signin', basic, (req, res, next) => {
 
 // PROBABLY REDIRECT TO THE ADMIN
 routes.get('/users', bearer, async (req, res, next) => {
-  const users = await User.find({});
+  const users = await Users.find({});
   const list = users.map(user => user.username);
   res.status(200).json(list);
 });
