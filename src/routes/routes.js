@@ -3,14 +3,17 @@
 const express = require('express');
 const routes = express.Router();
 
-const Users = require('../auth/models/users');
-const basic = require('../auth/middleware/basic');
-const bearer = require('../auth/middleware/bearer');
-const can = require('../auth/middleware/acl');
+const Users = require('../auth/models/users.js');
+const basic = require('../auth/middleware/basic.js');
+const bearer = require('../auth/middleware/bearer.js');
+const can = require('../auth/middleware/acl.js');
 
 routes.post('/signup', async (req, res, next) => {
   try {
     let user = new Users(req.body);
+    console.log('====================', user)
+    console.log('++++++++++++++++++++++', req.body)
+    console.log('----------------------', req)
     const userRecord = await user.save();
     // REMOVE AFTER TESTING
     const output = {

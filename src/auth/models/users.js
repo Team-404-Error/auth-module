@@ -3,11 +3,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 
 const users = new mongoose.Schema({
   username: { type: String, require: true, unique: true },
   password: { type: String, require: true},
-  role: { type: String, require: true, default: 'user', enum: ['user', 'admin']}
+  role: { type: String, require: true,  default: 'user', enum: ['user', 'admin']}
 }, { toJSON: {virtuals: true}});
 
 users.virtual('token').get(function () {
