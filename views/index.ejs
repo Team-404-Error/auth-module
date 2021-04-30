@@ -6,12 +6,22 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>PLEASE LOGIN</h1>
+
+  <h1>Create an Account</h1>
+
   <form method="POST" action="/signup">
     <input name="username" placeholder="username">
     <input name="password" placeholder="password">
     <button type="submit">sign up</button>
-    <button type="submit" method="GET" action="/profile" >sign in</button>
   </form>
+
+  <h1>Sign into an Existing Account</h1>
+
+  <form method="POST" action="/signin">
+    <input name="username" placeholder="username">
+    <input name="password" placeholder="password">
+    <button type="submit">sign in</button>
+  </form>
+
 </body>
 </html>
