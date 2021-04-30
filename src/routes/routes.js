@@ -8,6 +8,14 @@ const basic = require('../auth/middleware/basic.js');
 const bearer = require('../auth/middleware/bearer.js');
 const can = require('../auth/middleware/acl.js');
 
+routes.get('/', (req, res) => {
+  res.render('index')
+})
+
+routes.get('/profile', (req, res) => {
+  res.redict('profile')
+})
+
 routes.post('/signup', async (req, res, next) => {
   try {
     let user = new Users(req.body);

@@ -6,13 +6,17 @@ const cors = require('cors');
 const routes = require('./routes/routes');
 
 const app = express();
+app.set('view engine', 'ejs');
 app.use(express.json());
 
 app.use(cors());
 app.use(morgan('dev'));
 
 app.use(express.urlencoded({extended: true}));
+
 app.use(routes);
+
+
 
 module.exports = {
   server:app,
