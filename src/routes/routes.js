@@ -6,17 +6,20 @@ const routes = express.Router();
 const Users = require('../auth/models/users');
 const basic = require('../auth/middleware/basic');
 const bearer = require('../auth/middleware/bearer');
-const can = require('../auth/middleware/acl');
+// const can = require('../auth/middleware/acl');
 
 routes.post('/signup', async (req, res, next) => {
+  console.log(req)
   try {
     let user = new Users(req.body);
+    // console.log(req.body)
     const userRecord = await user.save();
     // REMOVE AFTER TESTING
     const output = {
       user: userRecord,
       token: userRecord.token
     };
+    console.log(output)
     // CHANGE 'OUTPUT' AFTER TESTING
     // PROBABLY CHANGE TO A REDIRECT
     res.status(201).json(output)
@@ -38,7 +41,10 @@ routes.post('/signin', basic, (req, res, next) => {
 
 // PROBABLY REDIRECT TO THE ADMIN
 routes.get('/users', bearer, async (req, res, next) => {
-  const users = await User.find({});
+  console.log('users')
+  console.log(req.body)
+  const users = await Users.find({});
+  console.log(users)
   const list = users.map(user => user.username);
   res.status(200).json(list);
 });
