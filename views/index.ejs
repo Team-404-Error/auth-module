@@ -6,12 +6,12 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>HELLO WORLD</h1>
-  <form>
-    <input placeholder="username"></form>
-    <input placeholder="password"></input>
-    <button>sign up</button>
-    <button>sign in</button>
+  <h1>PLEASE LOGIN</h1>
+  <form method="POST" action="/signup">
+    <input name="username" placeholder="username">
+    <input name="password" placeholder="password">
+    <button type="submit">sign up</button>
+    <button type="submit" method="GET" action="/profile" >sign in</button>
   </form>
 </body>
 </html>
