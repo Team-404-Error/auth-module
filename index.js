@@ -1,10 +1,10 @@
 'use strict';
 
-// =============== 3rd party ===============
+// =============== 3RD PARTY DEPENDENCIES ===============
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-// =============== files import ===============
+// =============== ESOTERIC FILES ===============
 const server = require('./src/server.js');
 const PORT = process.env.PORT || 3000;
 

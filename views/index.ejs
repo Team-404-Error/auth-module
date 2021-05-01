@@ -4,24 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-
-  <h1>Create an Account</h1>
-
-  <form method="POST" action="/signup">
-    <input name="username" placeholder="username">
-    <input name="password" placeholder="password">
-    <button type="submit">sign up</button>
-  </form>
-
-  <h1>Sign into an Existing Account</h1>
-
-  <form method="POST" action="/signin">
-    <input name="username" placeholder="username">
-    <input name="password" placeholder="password">
-    <button type="submit">sign in</button>
-  </form>
-
+  <main>
+    <h1>Create an Account</h1>
+    <form method="POST" action="/signup">
+      <input name="username" placeholder="username">
+      <input type="password" name="password" placeholder="password" >
+      <button type="submit" id="signup">sign up</button>
+    </form>
+    <h1>Sign into an Existing Account</h1>
+    <form method="POST" action="/signin">
+      <input name="username" placeholder="username" id="username">
+      <input type="password"  name="password" placeholder="password" id="password">
+      <button type="submit" id="signin">sign in</button>
+    </form>
+  </main>
 </body>
 </html>

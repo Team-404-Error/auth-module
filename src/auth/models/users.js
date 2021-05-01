@@ -1,16 +1,19 @@
 'use strict';
 
+// =============== 3RD PARTY DEPENDENCIES ===============
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+// =============== USER SCHEMA ===============
 const users = new mongoose.Schema({
   username: { type: String, require: true, unique: true },
   password: { type: String, require: true},
   role: { type: String, require: true,  default: 'user', enum: ['user', 'admin']}
 }, { toJSON: {virtuals: true}});
 
+// =============== VIRTUALS ===============
 users.virtual('token').get(function () {
   let tokenObject = {
     username: this.username,
@@ -32,7 +35,7 @@ users.pre('save', async function () {
   }
 });
 
-// BASIC AUTH
+// =============== BASIC AUTHENTICATION ===============
 users.statics.authenticateBasic = async function (username, password) {
   const user = await this.findOne({ username })
   const valid = await bcrypt.compare(password, user.password)
@@ -40,7 +43,7 @@ users.statics.authenticateBasic = async function (username, password) {
   throw new Error('Invalid User');
 }
 
-// BEARER AUTH
+// =============== BEARER AUTHENTICATION - TOKEN ===============
 users.statics.authenticateWithToken = async function(token) {
   try {
     const parsedToken = jwt.verify(token, process.env.SECRET);
