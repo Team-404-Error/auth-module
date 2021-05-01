@@ -1,11 +1,12 @@
 'use strict';
 // console.log('can you see me?');
-$('#signinForm').on('submit', function(e) {
+$('#signinForm').on('submit', function (e) {
   // console.log('hello');
   e.preventDefault;
   let username = $('#username').val();
   let password = $('#password').val();
-  let data = {};
+  console.log($(this).serialize());
+
   $.ajax({
     beforeSend: function (xhr) {
       let base64 = 'Basic ' + btoa(username + ':' + password);
@@ -15,11 +16,11 @@ $('#signinForm').on('submit', function(e) {
     type: 'POST',
     // UPDATE TO HEROKU LINK FOR 'PRODUCTION'
     url: 'http://localhost:3333/signin',
-    dataType: 'json',
-    data: JSON.stringify(data),
-    success: function (data){
-      console.log('data?', data.user);
-      // console.log('other token', result.user);
+    dataType: 'text',
+    data:{username: $('#username').val(), password: $('#password').val()},
+    success: function (data) {
+      console.log(data.user);
+      location.href = '/users';
     },
   });
 });

@@ -49,7 +49,7 @@ routes.post('/signin', basic, (req, res, next) => {
   // CHANGE 'OUTPUT' AFTER TESTING
   // PROBABLY CHANGE TO A REDIRECT
   console.log(user);
-  res.status(200).json(user)
+  res.status(200).json(user);
 });
 
 // --------------- USERS ROUTE ---------------
