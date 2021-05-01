@@ -5,7 +5,7 @@ const User = require('../models/users');
 
 module.exports = async (req, res, next) => {
 
-  // if(!req.headers.authorization) { return 'Not authorized'}
+  if(!req.headers.authorization) { return 'Not authorized'}
 
   let basic = req.headers.authorization.split(' ').pop();
   console.log("DECODEAD: ", base64.decode(basic))

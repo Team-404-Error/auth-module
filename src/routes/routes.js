@@ -44,18 +44,19 @@ routes.get('/users', bearer, async (req, res, next) => {
   res.status(200).json(list);
 });
 
-routes.get('/secret', bearer, can('delete'), async (req, res, next) => {
-  res.status(200).send('Welcome to the secret space!')
+routes.get('/secret', bearer, async (req, res, next) => {
+  console.log(req.headers)
+  res.status(200).cookie("???", "???").send('Welcome to the secret space!')
 });
 
-routes.put('/edit', async (req, res, next) => {
+// routes.put('/edit', async (req, res, next) => {
 
-});
+// });
 
-routes.delete('/delete', bearer, async (req, res, next) => {
-  console.log(req.user._id);
-  const deletedUser = await Users.findByIdAndDelete(req.user._id)
-  res.status(200).send(deletedUser)
-});
+// routes.delete('/delete', bearer, async (req, res, next) => {
+//   console.log(req.user._id);
+//   const deletedUser = await Users.findByIdAndDelete(req.user._id)
+//   res.status(200).send(deletedUser)
+// });
 
 module.exports = routes;
