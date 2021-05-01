@@ -34,7 +34,7 @@ routes.post('/signin', basic, (req, res, next) => {
   // CHANGE 'OUTPUT' AFTER TESTING
   // PROBABLY CHANGE TO A REDIRECT
   console.log("SIGN IN: ", user)
-  res.status(200).json(user)
+  res.status(200).cookie("auth", user.token).json(user)
 });
 
 // PROBABLY REDIRECT TO THE ADMIN
